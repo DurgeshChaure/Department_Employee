@@ -56,9 +56,9 @@ namespace Department_Employee.Repository
         }
         public async Task DeleteDepartmentAsync(int id)
         {
-            var department = new  Department(){ DeptId = id};
+            var department = new Department() { DeptId = id };
 
-             context.Departments.Remove(department);
+            context.Departments.Remove(department);
 
             await context.SaveChangesAsync();
         }

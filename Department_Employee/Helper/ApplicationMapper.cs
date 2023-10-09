@@ -8,7 +8,8 @@ namespace Department_Employee.Helper
     { 
         public ApplicationMapper()
         {
-          CreateMap<Department,DepartmentModel>();
+          CreateMap<Department,DepartmentModel>().ReverseMap();
+            CreateMap<Employee, EmployeeModal>().ReverseMap(); 
         }
     }
 }
