@@ -15,7 +15,12 @@ function Employee()
     const[showEdit,setShowEdit] = useState(false);
     const[oneEmployee,setOneEmploye] =useState({});
 
-
+//Finding the department id by department name
+function findDepartmentIdByName(departmentName) {
+    const department = deptData.find((item) => item.deptName === departmentName);
+    return department ? department.deptId : null;
+  }
+  
         //Handels for Add modal 
         const handleShowAdd = () => setShowAdd(true);
         const handleCloseAdd = () => setShowAdd(false);
@@ -101,7 +106,7 @@ const addEmployeeToDatabase = () =>{
 const departments = deptData.map((item)=>
 {
     return(
-    <option key={item.deptName} value={item.deptName}>
+    <option key={item.deptId} value={item.deptId}>
      {item.deptName}
     </option>
     )
@@ -118,6 +123,19 @@ const departments = deptData.map((item)=>
         }
         )
     }
+    //finding department id by Department Name 
+
+
+    const  DepartmentId = findDepartmentIdByName('Marketing');
+    console.log(DepartmentId)
+//find the dept Name from Dept Id
+function getDepartmentNameById(departmentId) {
+    const department = deptData.find((item) => item.deptId === departmentId);
+    var deptName = department ? department.deptName : '';
+    return deptName;
+  }
+
+  console.log(getDepartmentNameById(10));
     return(
       <Fragment>
           <button type="button" className="btn btn-warning right-corner-button"  style={{ position: "absolute",  top: "0",right: "0", marginRight: "50px" ,  marginTop: "10px" }} onClick={()=>{handleShowAdd()}} >Add</button>
@@ -145,7 +163,7 @@ const departments = deptData.map((item)=>
               <td>{item.empName}</td>
               <td>{item.empDesignation}</td>
               <td>{item.empSalary}</td>
-              <td>{item.deptName}</td>
+              <td>{getDepartmentNameById(item.deptId)}</td>
               <td>{item.dob}</td>
               <td>{item.doj}</td>
               <td>{item.doe}</td>
@@ -181,10 +199,11 @@ const departments = deptData.map((item)=>
                  <Input required type='text' value={employee.empDesignation} onChange={(e)=>setNewEmployee({...newEmployee,empSalary: e.target.value})}></Input>
                 </FormGroup>
                 <FormGroup>
-                 <label type='number'>Select Department</label>
-                 <select value={deptData.deptName} onChange={(e)=> setNewEmployee({...newEmployee,deptName:e.target.value})}>
+                 <label type='number'>Select Department</label><br />
+                 <select  style={{ width: '400px', height: '40px', fontSize: '16px', padding: '8px',  }} value={deptData.deptId} onChange={(e)=> setNewEmployee({...newEmployee,deptId:e.target.value})}>
                     {departments}
                  </select >
+                 
                 </FormGroup>
                 <FormGroup>
                 <label>Date of Birth</label>
@@ -226,7 +245,7 @@ const departments = deptData.map((item)=>
             <Input  required type='number' value={oneEmployee.empSalary} placeholder='Enter the salary' onChange={(e)=>setOneEmploye({...oneEmployee,empSalary:e.target.value})}></Input>
         </FormGroup>
         <FormGroup>
-        <select value={oneEmployee.deptName} onChange={(e)=>setOneEmploye({...oneEmployee,deptName:e.target.value})}>
+        <select style={{ width: '400px', height: '40px', fontSize: '16px', padding: '8px',  }} value={oneEmployee.deptId} onChange={(e)=>setOneEmploye({...oneEmployee,deptId:e.target.value})}>
                     {departments}
          </select >
         </FormGroup>
