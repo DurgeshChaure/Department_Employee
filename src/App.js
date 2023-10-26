@@ -5,6 +5,8 @@ import Home from './components/Home/Home';
 import { Container, Row, Col } from 'reactstrap';
 import Menu from './components/Menu/Menu';
 import Employee from './components/EmployeeList/Employee'
+import Contact from './components/Contact/Contact';
+import About from './components/About/About';
 function App() {
   return (
     <div>
@@ -18,6 +20,8 @@ function App() {
               <Route path="/" Component={Home} />
               <Route path="/department" Component={DepartmentList} />
               <Route path="/employee" Component={Employee}></Route>
+              <Route path="/about" Component={About}></Route>
+              <Route path="/contact" Component={Contact}></Route>
             </Routes>
           </Col>
         </Row>

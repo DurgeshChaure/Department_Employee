@@ -14,6 +14,12 @@ function Menu ()
       <Link className="list-group-item list-group-item-action" tag="a" to="/employee" action>
         Employee
       </Link>
+      <Link className="list-group-item list-group-item-action" tag="a" to="/about" action>
+        About
+      </Link>
+      <Link className="list-group-item list-group-item-action" tag="a" to="/contact" action>
+        Contact
+      </Link>
     </ListGroup>
   </div>
   )
